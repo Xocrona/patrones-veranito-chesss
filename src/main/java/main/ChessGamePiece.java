@@ -130,6 +130,35 @@ public abstract class ChessGamePiece implements Serializable {
       ChessGameBoard board);
 
   /**
+   * Calculates the possible moves for this piece. These are ALL the possible
+   * moves, including illegal (but at the same time valid) moves.
+   *
+   * @param board
+   *              the game board to calculate moves on
+   * @return ArrayList<String> the moves
+   */
+  protected ArrayList<String> calculateAllDirectionsPossibleMoves(ChessGameBoard board) {
+    ArrayList<String> northEastMoves = calculateNorthEastMoves(board, 1);
+    ArrayList<String> northWestMoves = calculateNorthWestMoves(board, 1);
+    ArrayList<String> southEastMoves = calculateSouthEastMoves(board, 1);
+    ArrayList<String> southWestMoves = calculateSouthWestMoves(board, 1);
+    ArrayList<String> northMoves = calculateNorthMoves(board, 1);
+    ArrayList<String> southMoves = calculateSouthMoves(board, 1);
+    ArrayList<String> eastMoves = calculateEastMoves(board, 1);
+    ArrayList<String> westMoves = calculateWestMoves(board, 1);
+    ArrayList<String> allMoves = new ArrayList<>();
+    allMoves.addAll(northEastMoves);
+    allMoves.addAll(northWestMoves);
+    allMoves.addAll(southWestMoves);
+    allMoves.addAll(southEastMoves);
+    allMoves.addAll(northMoves);
+    allMoves.addAll(southMoves);
+    allMoves.addAll(westMoves);
+    allMoves.addAll(eastMoves);
+    return allMoves;
+  }
+
+  /**
    * Calculates and returns moves in the south direction relative to this
    * piece.
    *
